@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EasyRide — Pro Bike Rentals</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- NAV -->
+    <header class="nav">
+      <div class="container nav-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">ER</div>
+          <div class="brand-text">
+            <span class="name">EasyRide</span>
+            <small class="slogan">Premium bikes • Instant bookings</small>
+          </div>
+        </div>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#bikes">Bikes</a>
+          <a href="#how">How it works</a>
+          <a href="#contact">Contact</a>
+          <button id="signupBtn" class="btn primary">Sign up</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-media" role="img" aria-hidden="true"></div>
+
+      <div class="hero-overlay">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <h1>Find the perfect bike for every trip</h1>
+            <p class="lead">Hourly & daily rentals — scooters, cruisers, mountain bikes, e-bikes, vintage and sport models. Verified condition, transparent pricing and 24/7 support.</p>
+
+            <form id="searchForm" class="search-form" role="search" aria-label="Search bikes">
+              <input id="q" type="search" placeholder="Search city, model or landmark" aria-label="Search" />
+              <select id="type" aria-label="Type">
+                <option value="">All types</option>
+                <option value="scooter">Scooter</option>
+                <option value="cruiser">Cruiser</option>
+                <option value="mountain">Mountain</option>
+                <option value="ebike">E-Bike</option>
+                <option value="sport">Sport</option>
+                <option value="vintage">Vintage</option>
+                <option value="electric">Electric</option>
+              </select>
+              <button class="btn accent" type="submit">Search</button>
+            </form>
+
+            <ul class="quick-stats" aria-hidden="true">
+              <li><strong>240+</strong><span>Bikes</span></li>
+              <li><strong>72</strong><span>Locations</span></li>
+              <li><strong>4.9</strong><span>Avg rating</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-cta">
+            <div class="card top-pick" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1518600506278-4e8ef466b810?auto=format&fit=crop&w=1600&q=90" alt="Top pick bike — Royal Enfield" />
+              <div class="card-body">
+                <h3>Top pick: Royal Enfield Classic</h3>
+                <p class="muted">Comfortable cruiser for long rides.</p>
+                <div class="card-actions">
+                  <button class="btn" id="detailsBtn">Details</button>
+                  <button class="btn primary" data-bike="Royal Enfield Classic" data-price="699">Book now</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="support" aria-hidden="true">
+              <strong>24/7 Support</strong>
+              <p class="muted">Insurance included · Flexible cancellations</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTERS & TABS -->
+    <section class="filters container" aria-label="Filters and categories">
+      <div class="filters-row">
+        <div class="tabs" role="tablist" aria-label="Bike types">
+          <button role="tab" aria-selected="true" class="tab active" data-tab="all" id="tab-all">All</button>
+          <button role="tab" aria-selected="false" class="tab" data-tab="scooter" id="tab-scooter">Scooters</button>
+          <button role="tab" aria-selected="false" class="tab" data-tab="cruiser" id="tab-cruiser">Cruisers</button>
+          <button role="tab" aria-selected="false" class="tab" data-tab="mountain" id="tab-mountain">Mountain</button>
+          <button role="tab" aria-selected="false" class="tab" data-tab="ebike" id="tab-ebike">E-Bikes</button>
+          <button role="tab" aria-selected="false" class="tab" data-tab="sport" id="tab-sport">Sport</button>
+          <button role="tab" aria-selected="false" class="tab" data-tab="vintage" id="tab-vintage">Vintage</button>
+          <button role="tab" aria-selected="false" class="tab" data-tab="electric" id="tab-electric">Electric</button>
+        </div>
+
+        <div class="filter" style="margin-left:auto">
+          <label for="priceRange" class="label-small">Max price (₹/hr)</label>
+          <input type="range" id="priceRange" min="100" max="1200" value="1000" />
+        </div>
+
+        <div class="filter actions-filter">
+          <label class="label-small">Sort</label>
+          <select id="sortBy">
+            <option value="popular">Most popular</option>
+            <option value="price-asc">Price: low → high</option>
+            <option value="price-desc">Price: high → low</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOG -->
+    <main id="bikes" class="container">
+      <h2 class="section-title">Available bikes</h2>
+      <p class="muted">Click a tab to filter by type, or use the search + range slider.</p>
+
+      <div id="grid" class="grid" role="list">
+        <!-- Cruiser -->
+        <article class="bike-card" role="listitem" data-type="cruiser" data-price="699" data-rating="4.9">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684f?auto=format&fit=crop&w=1400&q=90" alt="Royal Enfield" />
+          </figure>
+          <div class="card-content">
+            <h3>Royal Enfield Classic</h3>
+            <p class="desc">Classic cruiser — steady, comfortable and perfect for long rides.</p>
+            <div class="meta">
+              <span class="price">₹699/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="Royal Enfield Classic" data-price="699">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sport -->
+        <article class="bike-card" role="listitem" data-type="sport" data-price="499" data-rating="4.7">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1542367597-9a0f23f1b4f1?auto=format&fit=crop&w=1400&q=90" alt="Sport bike" />
+          </figure>
+          <div class="card-content">
+            <h3>Yamaha R15 (Sport)</h3>
+            <p class="desc">High-revving sport roadster — fun and responsive.</p>
+            <div class="meta">
+              <span class="price">₹499/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="Yamaha R15" data-price="499">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Mountain -->
+        <article class="bike-card" role="listitem" data-type="mountain" data-price="299" data-rating="4.8">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=90" alt="Mountain bike" />
+          </figure>
+          <div class="card-content">
+            <h3>Full-suspension Mountain Bike</h3>
+            <p class="desc">Strong suspension travel and durable frame for trails.</p>
+            <div class="meta">
+              <span class="price">₹299/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="Mountain Bike" data-price="299">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Scooter -->
+        <article class="bike-card" role="listitem" data-type="scooter" data-price="199" data-rating="4.6">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1400&q=90" alt="Scooter" />
+          </figure>
+          <div class="card-content">
+            <h3>City Scooter</h3>
+            <p class="desc">Convenient, automatic scooter — ideal for short trips.</p>
+            <div class="meta">
+              <span class="price">₹199/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="City Scooter" data-price="199">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- E-Bike -->
+        <article class="bike-card" role="listitem" data-type="ebike" data-price="349" data-rating="4.8">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1400&q=90" alt="E-bike" />
+          </figure>
+          <div class="card-content">
+            <h3>Urban E-Bike</h3>
+            <p class="desc">Pedal assist for easy city cruising and longer range.</p>
+            <div class="meta">
+              <span class="price">₹349/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="Urban E-Bike" data-price="349">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Vintage -->
+        <article class="bike-card" role="listitem" data-type="vintage" data-price="799" data-rating="4.9">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1452723312111-3a3c7d5a7b6f?auto=format&fit=crop&w=1400&q=90" alt="Vintage bike" />
+          </figure>
+          <div class="card-content">
+            <h3>Vintage Café Racer</h3>
+            <p class="desc">Stylish restored classic — head-turner for city rides.</p>
+            <div class="meta">
+              <span class="price">₹799/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="Vintage Café Racer" data-price="799">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Electric (moto) -->
+        <article class="bike-card" role="listitem" data-type="electric" data-price="599" data-rating="4.8">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=90" alt="Electric motorcycle" />
+          </figure>
+          <div class="card-content">
+            <h3>Electric Motorcycle</h3>
+            <p class="desc">Fast, zero-emissions electric motorcycle for silent power.</p>
+            <div class="meta">
+              <span class="price">₹599/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="Electric Motorcycle" data-price="599">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sport 2 -->
+        <article class="bike-card" role="listitem" data-type="sport" data-price="549" data-rating="4.7">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1400&q=90" alt="Sport motorcycle" />
+          </figure>
+          <div class="card-content">
+            <h3>Sport Roadster</h3>
+            <p class="desc">Aggressive handling and sporty ergonomics for the thrill seeker.</p>
+            <div class="meta">
+              <span class="price">₹549/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="Sport Roadster" data-price="549">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cruiser 2 -->
+        <article class="bike-card" role="listitem" data-type="cruiser" data-price="649" data-rating="4.8">
+          <figure class="media">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=90" alt="Cruiser" />
+          </figure>
+          <div class="card-content">
+            <h3>Classic Cruiser</h3>
+            <p class="desc">Relaxed riding position, perfect for scenic routes.</p>
+            <div class="meta">
+              <span class="price">₹649/hr</span>
+              <div class="card-ctas">
+                <button class="btn details">Details</button>
+                <button class="btn primary book" data-bike="Classic Cruiser" data-price="649">Reserve</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div>© 2025 EasyRide</div>
+          <div class="muted">Built with care · Demo images: Unsplash</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h3 id="modalTitle">Reserve bike</h3>
+      <p id="modalSub" class="muted">Fill the reservation details below.</p>
+
+      <form id="bookingForm" class="booking-form" onsubmit="return false;">
+        <label>
+          Bike
+          <input id="bikeName" readonly />
+        </label>
+
+        <label>
+          Price (₹/hr)
+          <input id="bikePrice" readonly />
+        </label>
+
+        <label>
+          Your name
+          <input id="userName" required placeholder="Full name" />
+        </label>
+
+        <label>
+          Phone
+          <input id="userPhone" required placeholder="+91 9XXXXXXXXX" />
+        </label>
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancelBooking">Cancel</button>
+          <button type="submit" class="btn primary" id="confirmBooking">Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
